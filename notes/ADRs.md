@@ -1,0 +1,130 @@
+# Architecture / Authoring Decision Records
+
+<!-- Each record: Context / Decision / Alternatives rejected / Consequence.
+     Status: Accepted unless noted. These capture WHY, where AUTHORS-GUIDE.md
+     captures WHAT-TO-DO. All records are kept together in this single file
+     (notes/ADRs.md); they are intentionally not fanned out into separate
+     per-record files. Do not silently revert an Accepted decision; supersede
+     it with a new numbered record. -->
+
+## ADR-0001 — Monorepo: manuscript + companion together
+**Context.** A book of markdown chapters plus a runnable Clojure reference
+implementation whose listings appear in the book.
+**Decision.** One repository, `manuscript/` and `companion/` side by side.
+**Rejected.** Two repos. Cleaner boundaries, but the two must evolve in
+lockstep as the ORU→Observation specimen threads through the chapters;
+cross-referencing across repos is friction with no offsetting gain at this
+scale.
+**Consequence.** CI must distinguish "build the book" from "run the tests."
+Split is reconsiderable if the companion grows independent life.
+
+---
+## ADR-0002 — Canonical object is a bitemporal event log, not a super-format
+**Context.** The book needs a *U* through which transformations factor.
+**Decision.** *U* is an append-only bitemporal event log; every format is a
+view or an ingestion. (Framing decision — load-bearing for Parts I & III.)
+**Rejected.** A pandoc-style universal document schema. It cannot satisfy the
+round-trip laws and hides loss inside translations; it also mismodels events,
+states, and attested snapshots as one kind of thing.
+**Consequence.** Chapters 12 and 32 depend on this. Do not recast *U* as a
+format in later drafts.
+
+---
+## ADR-0003 — Arrows are lenses and spans, not isomorphisms
+**Context.** Real transformations are lossy.
+**Decision.** Model transformations as lenses (asymmetric, with get/put
+laws) and spans (shared core), not invertible maps. (Framing decision.)
+**Rejected.** Isomorphisms / lossless round-trips as the correctness bar —
+unreachable in practice; asserting it produces dishonest tests.
+**Consequence.** Correctness is defined observationally (ADR-0004), not by
+round-trip.
+
+---
+## ADR-0004 — Correctness is observational, relative to purpose sets
+**Context.** "Correct" must be defined for lossy maps.
+**Decision.** f is correct for a query q iff q∘f = q_source; the recipient's
+purpose set is the spec; correctness is a lattice; the residue is a reviewed
+artifact. (Framing decision — the book's keystone.)
+**Rejected.** Absolute/format-level correctness; single-boolean verdicts.
+**Consequence.** Chapter 21 is the keystone; the whole method (Part II)
+derives from this.
+
+---
+## ADR-0005 — Four parts, with Reference as its own part
+**Context.** Readers will both *read through* and *consult* the work.
+**Decision.** Part I Problem, II Method, III Structure, IV Reference, plus
+back matter. Reference (standards, terminology, tools) is a full part, not an
+appendix.
+**Rejected.** Folding reference material into narrative chapters. It would be
+unfindable for the consult-mode reader and would rot inside prose.
+**Consequence.** Part IV lives in separate files with uniform entry schema
+and per-entry verification dates (ADR-0009); it keeps receiving commits after
+I–III stabilize.
+
+---
+## ADR-0006 — Keystone-first writing order
+**Context.** Limited energy; risk of writing setup chapters around a spine
+that turns out wrong.
+**Decision.** Order: test-plan templates (§94) → Part II → Part III → Part I
+& preface last. Draft ch 21 before its dependents.
+**Rejected.** Linear 1→N drafting. Books die at chapter 4; the setup chapters
+are also the cheapest to write once the spine is proven.
+**Consequence.** Introductions are written knowing what they introduce.
+
+---
+## ADR-0007 — Companion is a runnable reference implementation; no pseudocode
+**Context.** The book's central claim is that correctness properties are
+executable.
+**Decision.** Every code listing exists in `companion/` and is covered by a
+test. No pseudocode in the manuscript.
+**Rejected.** Illustrative-only snippets. They rot and undercut the book's
+own thesis.
+**Consequence.** `make check` gates pushes; the specimen must stay in sync
+across every chapter that cites it.
+
+---
+## ADR-0008 — File naming encodes reading order
+**Context.** Pandoc concatenates by sort order.
+**Decision.** `NN-slug.md` within `NN-part/` directories; lexical sort =
+reading order.
+**Rejected.** Arbitrary names with an external manifest. One more thing to
+drift out of sync.
+**Consequence.** Renumbering a chapter is a file rename, visible in git.
+
+---
+## ADR-0009 — Uniform reference-entry schema, date-stamped
+**Context.** Reference material must be consultable and it rots.
+**Decision.** Every Part IV entry uses `templates/reference-entry.md`; every
+entry carries a verification date.
+**Rejected.** Freeform entries. They become non-comparable and undatable.
+**Consequence.** Never write a Part IV entry freehand (AUTHORS-GUIDE §4).
+
+---
+## ADR-0010 — Dual audience via introduce-twice
+**Context.** Two audiences with complementary gaps (CT-fluent vs
+domain-fluent).
+**Decision.** Every categorical term and every healthcare term is introduced
+twice in quick succession — once operationally, once by name. Glossary serves
+both directions.
+**Rejected.** Writing for both simultaneously in every sentence — condescends
+to each reader half the time.
+**Consequence.** A per-clause cost accepted throughout; glossary is
+half math-for-clinicians, half healthcare-for-mathematicians.
+
+---
+## ADR-0011 — AGENTS.md as the agent-instruction convention
+**Context.** Multiple agent tools may read the repo.
+**Decision.** AGENTS.md is canonical; CLAUDE.md points to it.
+**Rejected.** CLAUDE.md-only. Non-portable across tools.
+**Consequence.** Agents read AGENTS.md first.
+
+---
+## ADR-0012 — WSL-only git on Windows
+**Context.** Mixed-platform commits cause CRLF/LF churn and exec-bit flips.
+**Decision.** All git operations run under WSL (via `wsl.exe bash -lc`),
+enforced by a pre-commit hook; `.gitattributes` sets `eol=lf`. Hard-won from
+prior repos.
+**Rejected.** Native Windows git with `.gitattributes` alone — sufficient in
+most cases but not belt-and-suspenders enough for this author's experience.
+**Consequence.** Code/Cowork must commit through WSL; autonomous agents leave
+commits to the human.

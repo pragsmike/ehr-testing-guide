@@ -1,0 +1,26 @@
+# Normalize text files in the repo, and check out as LF everywhere.
+# This repo is worked on from both native Windows and WSL (Spacemacs);
+# without this, Windows' core.autocrlf=true would rewrite the Makefile
+# and Clojure sources to CRLF on checkout, which GNU Make and some
+# shell-invoked tooling do not tolerate, while WSL checkouts would stay
+# LF -- silently diverging the two working trees. (Git operations on this
+# repo are also required to happen from WSL only -- see AUTHORS-GUIDE.md
+# "Git operations: WSL only" -- this is defense in depth, not a substitute
+# for that rule.)
+* text=auto eol=lf
+
+# Explicitly declare text files so git's binary-detection heuristic never
+# has to guess for the file types this repo actually contains.
+*.md text
+*.clj text eol=lf
+*.edn text eol=lf
+*.bib text
+Makefile text eol=lf
+
+# Binary files — never touch these.
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.pdf binary
+*.jar binary

@@ -1,0 +1,15 @@
+cff-version: 1.2.0
+message: "If you use or cite this work, please cite it as below."
+title: "EHR Testing Guide"
+type: software
+authors:
+  - family-names: Gallaher
+    given-names: Mike
+year: 2026
+license: Apache-2.0
+repository-code: "https://github.com/REPLACE-AT-G2-STEP-7"
+abstract: >-
+  A practitioner's guide to writing test plans for EHR data
+  transformations, with a runnable Clojure reference
+  implementation. Manuscript prose CC BY-NC-ND 4.0; code
+  Apache-2.0.

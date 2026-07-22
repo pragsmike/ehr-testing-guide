@@ -1,0 +1,24 @@
+# Clojure / clj tooling
+.cpcache/
+target/
+.nrepl-port
+.lsp/.cache/
+.clj-kondo/.cache/
+
+# Emacs
+*.elc
+
+# OS cruft
+.DS_Store
+Thumbs.db
+
+# Local Claude Code tool-permission state (per-clone, not shared config).
+.claude/settings.local.json
+
+# Pandoc build output
+build/
+
+# Rendered book artifacts at repo root only (manuscript sources are never
+# named *.epub / *.pdf, so this cannot shadow real content)
+/*.epub
+/*.pdf
