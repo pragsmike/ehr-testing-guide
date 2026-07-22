@@ -7,7 +7,7 @@ authors:
     given-names: Mike
 year: 2026
 license: Apache-2.0
-repository-code: "https://github.com/REPLACE-AT-G2-STEP-7"
+repository-code: "https://github.com/ehr-testing-guide"
 abstract: >-
   A practitioner's guide to writing test plans for EHR data
   transformations, with a runnable Clojure reference
