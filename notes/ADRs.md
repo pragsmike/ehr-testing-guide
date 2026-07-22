@@ -128,3 +128,26 @@ prior repos.
 most cases but not belt-and-suspenders enough for this author's experience.
 **Consequence.** Code/Cowork must commit through WSL; autonomous agents leave
 commits to the human.
+
+---
+## ADR-0013 — Claims register gains an external-facts table
+**Context.** Two false factual claims (Synthea HL7 v2 export; HAPI HL7v2
+licensing) survived in the manuscript and bundled research because the
+claims register tracks conceptual insights and drafting coverage, not
+externally verifiable facts; reference-chapter "Entry last verified" dates
+cover register entries but not facts asserted in prose or bundled
+documents. Both errors were found by external component-selection
+research (2026-07-22), not by the repo's own verification sweeps.
+**Decision.** `notes/claims-register.md` gains a second table, "External
+factual claims" (F-rows), for load-bearing, externally verifiable
+assertions about tools, licenses, and ecosystem capabilities — each row
+carrying where the claim is asserted, its evidence, a last-verified date,
+and a status. The C-table's purpose and format are unchanged.
+**Rejected.** (a) Folding fact-rows into the C-table — muddies a checklist
+that tracks drafting coverage, not truth. (b) Relying solely on
+reference-chapter "Entry last verified" dates — demonstrated insufficient:
+the false claims lived outside the reference chapters. (c) A separate new
+file — the register is already the place agents and sessions consult; a
+second table there is discoverable, a fourth notes file is not.
+**Consequence.** Verification sweeps now have a definite worklist; new
+load-bearing tool facts asserted anywhere in the repo should get an F-row.

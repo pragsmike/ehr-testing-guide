@@ -4,7 +4,15 @@
      its destination chapter and whether it has reached prose yet. When a
      claim lands in a drafted chapter, change status to "in <file>". A claim
      at "transcript-only" exists nowhere durable but here — those are the
-     ones to rescue first. Not part of the Pandoc build. -->
+     ones to rescue first. Not part of the Pandoc build.
+
+     A second table below, "External factual claims" (F-rows), tracks
+     load-bearing, externally verifiable assertions about tools, licenses,
+     and ecosystem capabilities — the C-table above tracks whether an
+     *insight* has reached prose, not whether a *fact* is still true. Give
+     an F-row to any such fact asserted anywhere in the repo (manuscript,
+     research/, notes/), with its evidence and a last-verified date; see
+     ADR-0013. -->
 
 | # | Claim | Destination | Status |
 |---|---|---|---|
@@ -35,3 +43,10 @@
 | C25 | Structural gates are per tower level: base standard, profile, and version are independently violable, so "validates" is meaningless without naming the layer. | ch 25, 13 | in ch 13 |
 | C26 | A ConceptMap's per-code equivalence annotations (equivalent / wider / narrower / inexact) are test input: a translation property that asserts plain equality on a non-equivalent mapping passes when it should fail — the map said the honest thing and the check wasn't listening. | ch 24, 34, 42 | in ch 42 (ConceptMap entry) |
 | C27 | Emitting deltas from a sigma is invention unless differenced against a baseline: a fold has forgotten its path, so a state-to-message interface with no baseline is minting history, not deriving it. | ch 12, 32 | in ch 12 |
+
+## External factual claims
+
+| # | Claim | Where asserted | Evidence | Last verified | Status |
+|---|---|---|---|---|---|
+| F1 | Synthea has no HL7 v2 exporter in mainline (native outputs: FHIR R4/STU3/DSTU2, C-CDA, CSV, CPCDS; the only v2 code was PR #862, closed unmerged; feature request #1561 open, uncommitted). | ch 23 (corrected), research/jvm-clojure-ehr-prior-art-research.md (corrected; see its Corrections section), Experiment 3 | https://github.com/synthetichealth/synthea (export dir); https://github.com/synthetichealth/synthea/pull/862 ; https://github.com/synthetichealth/synthea/issues/1561 | 2026-07-22 | corrected (was asserted as "exports HL7 v2.4 messages") |
+| F2 | HAPI HL7v2 is dual-licensed MPL / GPL at the licensee's choice (per pom.xml; license version numbers not asserted). | research/jvm-clojure-ehr-prior-art-research.md (corrected; three locations) | https://raw.githubusercontent.com/hapifhir/hapi-hl7v2/master/pom.xml | 2026-07-22 | corrected (was asserted as "MPL 1.1 / Apache 2.0") |
