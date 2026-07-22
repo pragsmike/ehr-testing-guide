@@ -163,8 +163,8 @@ histories from a model of how people age, fall ill, and get tested. Such a
 program is a **synthetic-population generator**, and the one this book
 points to is **Synthea**, an open, MITRE-maintained generator that runs a
 state-machine model of disease and lifecycle to emit whole synthetic
-populations, exportable as FHIR R4 bundles, C-CDA documents, HL7 v2
-messages, or OMOP tables. Its dated entry — versions, interop mode, where
+populations, exportable as FHIR R4 bundles, C-CDA documents, or OMOP
+tables. Its dated entry — versions, interop mode, where
 it bites — is in Chapter 43; here what matters is exactly what it buys and
 exactly what it cannot.
 

@@ -9,6 +9,25 @@
 
 ---
 
+## Corrections
+
+*(Added 2026-07-22, after spot-checking this survey against primary sources.
+The body text below is corrected in place; this note records what changed
+and why.)*
+
+- **Synthea does not export HL7 v2.** Mainline Synthea (latest release
+  v4.0.0, 2026-03-05) has no HL7 v2 exporter — its `export/` source
+  directory contains FHIR R4/STU3/DSTU2, C-CDA, CSV, CPCDS, CDW, JSON,
+  text, and RIF exporters only. The only v2 code ever proposed was
+  [PR #862](https://github.com/synthetichealth/synthea/pull/862) (2021,
+  ~626-line `HL7V2Exporter.java`), closed unmerged; its author later called
+  it "a bit of a hack and not suitable for inclusion."
+  [Issue #1561](https://github.com/synthetichealth/synthea/issues/1561)
+  (opened 2025-02-12) requests v2 export and remains open with no
+  maintainer commitment. This corrects the "HL7 v2.4 messages" bullet
+  under Synthea's generated outputs and the Experiment 3 data source
+  below.
+
 ## Executive Summary
 
 ### Strongest Reusable Libraries
@@ -891,7 +910,6 @@ Synthea generates synthetic but realistic patient populations using a state-mach
 - FHIR R4 Bundles (Patient, Encounter, Condition, Observation, Procedure, MedicationRequest, Immunization, DiagnosticReport, AllergyIntolerance, CarePlan).
 - C-CDA documents.
 - OMOP CDM CSV files.
-- HL7 v2.4 messages.
 - CSV files with patient demographics.
 - Realistic vital signs, lab results, and medication histories.
 
@@ -1301,7 +1319,7 @@ This section explains where general-purpose Clojure/JVM libraries fit into healt
 ### Experiment 3: HL7 v2 Parsing in Clojure
 - **Objective:** Compare clojure-hl7-messaging-2-parser and HAPI HL7v2 interop for parsing ADT_A01 messages.
 - **Candidate tools:** cmiles74 parser; HAPI HL7v2 via Java interop.
-- **Expected artifact:** A Clojure namespace with both implementations; a test set of 50 real-world-structure HL7 v2 ADT messages (Synthea HL7 v2 export); performance and ergonomics comparison.
+- **Expected artifact:** A Clojure namespace with both implementations; a test set of 50 real-world-structure HL7 v2 ADT messages (hand-authored or publicly sourced ADT messages — Synthea has no HL7 v2 export; see the Corrections note above); performance and ergonomics comparison.
 - **Acceptance criteria:** Both parse all 50 messages; comparison of field extraction ergonomics documented.
 - **Estimated setup complexity:** Low (2–4 hours).
 - **Likely failure modes:** cmiles74 parser limitations on non-standard segment orderings.
