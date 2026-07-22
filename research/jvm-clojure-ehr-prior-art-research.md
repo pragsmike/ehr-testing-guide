@@ -27,12 +27,20 @@ and why.)*
   maintainer commitment. This corrects the "HL7 v2.4 messages" bullet
   under Synthea's generated outputs and the Experiment 3 data source
   below.
+- **HAPI HL7v2's license is dual MPL/GPL, not "MPL 1.1 / Apache 2.0."**
+  The [HAPI HL7v2 `pom.xml`](https://raw.githubusercontent.com/hapifhir/hapi-hl7v2/master/pom.xml)
+  states: "HAPI is dual licensed under both the Mozilla Public License and
+  the GNU General Public License. What this means is that you may choose
+  to use HAPI under the terms of either license." A consumer may elect the
+  MPL terms, so GPL obligations are not mandatory for downstream users.
+  Version numbers for either license are not asserted here, since the pom
+  text fetched does not state them.
 
 ## Executive Summary
 
 ### Strongest Reusable Libraries
 - **[HAPI FHIR](https://hapifhir.io/)** (Java, Apache 2.0): The most complete JVM FHIR library. Covers parsing, serialization, validation, FHIRPath, JPA server, client, SMART on FHIR scaffolding, terminology. Unavoidable for serious JVM FHIR work.
-- **[HAPI HL7v2](https://hapifhir.github.io/hapi-hl7v2/)** (Java, MPL 1.1/Apache 2.0): The standard JVM HL7 v2 library. Tolerant and strict parsers, MLLP, message models.
+- **[HAPI HL7v2](https://hapifhir.github.io/hapi-hl7v2/)** (Java, dual MPL/GPL, licensee's choice): The standard JVM HL7 v2 library. Tolerant and strict parsers, MLLP, message models.
 - **[org.hl7.fhir.core / validator_cli](https://github.com/hapifhir/org.hl7.fhir.core)** (Java, Apache 2.0): The official HL7 validator. Profile validation, IG loading, CDA validation via `validator_cli.jar`.
 - **[CQL Evaluation Engine](https://github.com/cqframework/clinical_quality_language)** (Java/Kotlin, Apache 2.0): HL7-endorsed Java CQL compiler and ELM runtime for quality measures and CDS.
 - **[dcm4che](https://github.com/dcm4che/dcm4che)** (Java, LGPL 2.1): The JVM standard for DICOM. DICOM parsing, network services, IHE actors.
@@ -120,7 +128,7 @@ and why.)*
 | Project | Category | Primary Language | Purpose | Current Release | Maintenance Status | License | Standards Support | Deployment | Clojure Interop | Likely Reusable Parts | Major Risks | Disposition |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|
 | HAPI FHIR | Library / Server | Java | FHIR parsing, validation, server, client | 8.6.0 (Nov 2025) | Active | Apache 2.0 | R4, R4B, R5, DSTU3, STU3 | Library / Docker | Via Java interop | Parser, validator, client, JPA server, FHIRPath | Builder-heavy API; global FhirContext; large transitive deps | Adopt |
-| HAPI HL7v2 | Library | Java | HL7 v2 parsing, MLLP, encoding | 2.5.1 (2024) | Stable and maintained | MPL 1.1 / Apache 2.0 | v2.1–2.8 | Library | Via Java interop | Parser, message builder, MLLP transport | Conformance profile validation is limited | Adopt |
+| HAPI HL7v2 | Library | Java | HL7 v2 parsing, MLLP, encoding | 2.5.1 (2024) | Stable and maintained | Dual MPL/GPL (licensee's choice) | v2.1–2.8 | Library | Via Java interop | Parser, message builder, MLLP transport | Conformance profile validation is limited | Adopt |
 | org.hl7.fhir.core | Library / CLI | Java | FHIR validation, FHIRPath, IG, CDA | Latest 2025/2026 | Active | Apache 2.0 | FHIR R2–R6, CDA, C-CDA | Library / CLI jar | Via Java interop or subprocess | Validator, FHIRPath engine, IG tools | Network calls for IG/terminology by default; requires offline configuration | Adopt (subprocess preferred) |
 | Blaze | FHIR Server | Clojure | FHIR R4 server + CQL engine | 1.10.1 (2026) | Active | Apache 2.0 | FHIR R4, CQL | Docker / uberjar | Native Clojure | Architecture, module design, Integrant patterns, FHIR storage | Production use requires RocksDB ops knowledge | Adopt / study |
 | Medplum | FHIR Platform | TypeScript / Node | FHIR-native dev platform, auth, subscriptions | v5.1.22 (Jun 2026) | Active | Apache 2.0 | FHIR R4, SMART, US Core | SaaS / self-hosted | HTTP / REST | Full FHIR application architecture patterns | Not JVM; SaaS model; self-hosting requires ops | Study (architectural prior art) |
@@ -207,7 +215,7 @@ HAPI FHIR is a family of modules:
 **Repository:** [https://github.com/hapifhir/hapi-hl7v2](https://github.com/hapifhir/hapi-hl7v2)
 **Documentation:** [https://hapifhir.github.io/hapi-hl7v2/](https://hapifhir.github.io/hapi-hl7v2/)
 **Current release:** 2.5.1 (2024)
-**License:** MPL 1.1 / Apache 2.0 (dual)
+**License:** Dual-licensed MPL / GPL, at the licensee's choice (per the project `pom.xml`; version numbers not asserted — not stated in the source checked)
 **HL7 versions:** v2.1 through v2.8, plus HL7 v3 legacy
 **Maintenance:** Stable and maintained.
 **Distribution:** Maven Central (`ca.uhn.hapi`)
