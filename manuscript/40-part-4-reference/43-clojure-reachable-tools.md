@@ -116,14 +116,14 @@
 
 | Field | Value |
 |---|---|
-| What it is | An open-source synthetic patient population generator that produces realistic (but not real) longitudinal patient records in FHIR, C-CDA, and other formats. |
+| What it is | An open-source synthetic patient population generator that produces realistic (but not real) longitudinal patient records in FHIR (R4, STU3, DSTU2), C-CDA, CSV, and CPCDS formats. |
 | Publisher / steward | The MITRE Corporation and contributors |
 | Kind of object (in this book's terms) | tool |
 | Interop mode (tools only) | subprocess |
 | Maintenance status (tools only) | active |
 | Role in a test plan | The generated-cases layer of the corpus in Chapter 23, before controlled mutation is applied. |
 | Where it bites | Synthea's clinical realism is bounded by its modules — it will not generate a case class its modules don't model, so mutation is still required for defect coverage. |
-| Entry last verified | 2026-07-21 |
+| Entry last verified | 2026-07-23 |
 
 ### XTDB
 
