@@ -65,13 +65,13 @@
 | Field | Value |
 |---|---|
 | What it is | NIST's HL7 v2 conformance-testing tooling: a JVM library (`gov.nist:hl7-v2-validation`) for parsing and validating v2 messages against HL7 conformance profiles, plus hosted validators (the General Validation Tool) and the domain test suites — Immunization, Syndromic Surveillance, Laboratory — used in US EHR certification. |
-| Publisher / steward | US National Institute of Standards and Technology (NIST), Systems Interoperability Group; public domain |
+| Publisher / steward | US National Institute of Standards and Technology (NIST), Systems Interoperability Group; license unstated — the repository ships no LICENSE file or source-header license text (presumably US-Government work, but unverified) |
 | Kind of object (in this book's terms) | tool |
 | Interop mode (tools only) | Java interop (the `gov.nist:hl7-v2-validation` library) or HTTP (the hosted GVT and test-suite portals) |
 | Maintenance status (tools only) | active |
 | Role in a test plan | The profile-conformance gate for the v2 (source) side: where HAPI HL7v2 checks structure against the version model, NIST validates against a *named* HL7 conformance profile, enforcing exactly the profile layer Chapter 25 insists you name before saying "it validates." Its context-free versus context-based split — technical conformance versus directed test cases with example messages — is prior art for Chapter 23's generated-versus-curated corpus distinction. Reachable as a JVM library, unusually for a conformance suite; most (Inferno, Gazelle) are external processes only. |
 | Where it bites | Profile conformance is still structural: a message can pass a NIST profile and still misrepresent the source under a purpose set (Chapters 21–22) — the tool answers "does this conform to the profile?", never "is the transform correct?" And the profile is a version-pinned artifact — the certification suites are dated (2015 versus 2024 SVAP editions), so "passes NIST" means nothing without naming which suite and profile version, Chapter 23's versions-as-first-class-artifacts point again. The Maven coordinates have not been verified to resolve from Central — confirm them the first time the library is actually pulled in, and be prepared to hunt (CDC's `lib-hl7v2-nist-validator` wrapper bundles the NIST jars as a local Maven repository, which is one fallback route to the artifacts). |
-| Entry last verified | 2026-07-21 |
+| Entry last verified | 2026-07-23 |
 
 ### Inferno
 
