@@ -151,3 +151,25 @@ file — the register is already the place agents and sessions consult; a
 second table there is discoverable, a fourth notes file is not.
 **Consequence.** Verification sweeps now have a definite worklist; new
 load-bearing tool facts asserted anywhere in the repo should get an F-row.
+
+---
+## ADR-0014 — Aside vocabulary exempt from introduce-twice
+**Context.** ADR-0010 requires every categorical and healthcare term be
+introduced twice — operationally, then by name. Chapter 31 adds an aside
+addressed solely to the CT-fluent reader (closure operator, adjunction,
+triangle identity, Galois connection); introducing these operationally
+would defeat the aside's purpose and toll the domain-fluent reader the
+aside exists to spare.
+**Decision.** Asides explicitly addressed to the already-fluent reader are
+exempt from introduce-twice and from the glossary-at-first-use rule.
+Scope is the aside's own text only: any term that escapes into main prose
+re-acquires both obligations at that point. Asides must be visibly
+set off and name their audience.
+**Rejected.** (a) Introduce-twice inside asides — pays ADR-0010's
+per-clause cost precisely where its dual-audience rationale doesn't
+apply. (b) Per-aside ratification notes in chapter text — leaves the
+policy invisible to future integration sessions reading ADRs.md, which
+would see ADR-0010 as unqualified and "fix" compliant asides.
+**Consequence.** ADR-0010 is narrowed, not superseded. The ch-31 in-text
+ratification flag is removed once this ADR lands. Glossary continues to
+serve main prose only; aside-only terms get literature pointers instead.

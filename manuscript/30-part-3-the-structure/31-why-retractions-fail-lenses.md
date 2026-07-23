@@ -45,17 +45,11 @@ applies.
 round-trip law fails — plus a pointer to the BX (bidirectional
 transformations) literature for readers who want the full formal treatment.
 
-> **Aside, for the categorically inclined** (scoped exception to
-> ADR-0010's introduce-twice rule, flagged here for author ratification
-> rather than assumed — this aside addresses only readers who already
-> hold `adjunction`, `closure operator`, and `triangle identity`, so none
-> of the three is introduced operationally-first, and none gets a
-> glossary/acronym entry on the strength of appearing only here): the
-> stabilized round trip is a **closure operator**; the book's retract →
-> lens ladder reads as successively weakened **adjunctions**, with the
-> third law surviving as the shadow of the **triangle identities**
-> (f∘g∘f = f holds in any adjunction, even where neither round trip is
-> the identity). Adjunction itself fails wherever no best approximant
-> exists — exactly the cross-cutting terminology maps of Chapter 34,
-> where spans take over. Pointer: Galois connections / abstract
-> interpretation, parallel to the BX pointer above.
+> **Aside, for the categorically inclined**: the stabilized round trip is a
+> **closure operator**; the book's retract → lens ladder reads as successively
+> weakened **adjunctions**, with the third law surviving as the shadow of the
+> **triangle identities** (f∘g∘f = f holds in any adjunction, even where neither
+> round trip is the identity). Adjunction itself fails wherever no best
+> approximant exists — exactly the cross-cutting terminology maps of Chapter 34,
+> where spans take over. Pointer: Galois connections / abstract interpretation,
+> parallel to the BX pointer above.
