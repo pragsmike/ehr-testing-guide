@@ -43,6 +43,7 @@
 | C25 | Structural gates are per tower level: base standard, profile, and version are independently violable, so "validates" is meaningless without naming the layer. | ch 25, 13 | in ch 13 |
 | C26 | A ConceptMap's per-code equivalence annotations (equivalent / wider / narrower / inexact) are test input: a translation property that asserts plain equality on a non-equivalent mapping passes when it should fail — the map said the honest thing and the check wasn't listening. | ch 24, 34, 42 | in ch 42 (ConceptMap entry) |
 | C27 | Emitting deltas from a sigma is invention unless differenced against a baseline: a fold has forgotten its path, so a state-to-message interface with no baseline is minting history, not deriving it. | ch 12, 32 | in ch 12 |
+| C28 | Round-trip idempotence (second pass is a no-op) is an executable law distinguishing stabilizing loss from eroding loss; runnable with no categorical vocabulary; its CT reading (closure operator; the retract→lens ladder as weakened adjunctions) is confined to a ch-31 aside. | ch 31 | in notes/design-rationale.md; ch 31 skeleton only |
 
 ## External factual claims
 

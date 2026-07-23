@@ -251,3 +251,43 @@ everything in Part III (the structure) explains why the phenomena that force
 the definition — lossiness, kind-mismatch, non-functional terminology maps —
 have the categorical shapes they do. This document is the through-line those
 parts elaborate.
+
+## The retract-to-lens ladder, and why adjunction stays an aside
+
+The book's successive weakenings of "lossless" form a ladder, each rung
+admitting more of what real transformations actually do: **isomorphism**
+(the pairwise ideal — a per-pair invertible map, never actually the hub's
+claim) → **retract of *U*** (the hub's actual claim, Chapter 11: every
+representation embeds in and recovers from the canonical object) →
+**adjunction** (coherent, structured loss: both round trips exist but need
+not be the identity — a round trip need only be *idempotent*, i.e. a
+closure or interior operator, and the triangle identities hold as
+equalities in place of the round trips holding as the identity) → **lens
+laws** (Chapter 31: GetPut/PutGet, the operational form the book actually
+runs) → **observational equivalence per purpose set** (Chapter 21:
+correctness relative to what the recipient asks, the bar the book settles
+on).
+
+Adjunction is the missing rung between retract and lens, and the decision
+is to keep it out of main text. It clears the book's operational bar at an
+acceptable cost only for readers who already carry the vocabulary: for
+everyone else it fails the introduce-twice bar (ADR-0010) at a cost the
+extra precision doesn't buy back, since the lens laws already give the
+book everything it needs to run. It survives in two contained places only:
+(a) the *round-trip stability law* itself — run the round trip twice and
+check the second pass is a no-op on the first pass's output — stated in
+Chapter 31 in entirely plain words, with no adjunction vocabulary attached;
+and (b) a short, explicitly scoped aside in Chapter 31 for readers who
+already hold the terms, noting that the stability law is the surviving
+shadow of the triangle identities (f∘g∘f = f holds in any adjunction, even
+where neither round trip is the identity) and that the ladder above reads
+as successively weakened adjunctions.
+
+Adjunction's own limit marks the handoff to Chapter 34. An adjunction
+exists only where a **best approximant** exists on each side — a canonical
+closest representable value to round-trip through. Cross-cutting
+terminology maps deny exactly this: SNOMED, LOINC, ICD, and RxNorm carve
+clinical reality differently on purpose, so there is no canonical
+"closest" concept to complete the round trip with, and the honest picture
+reverts to a span with no section — which is where Chapter 34 picks the
+thread back up.

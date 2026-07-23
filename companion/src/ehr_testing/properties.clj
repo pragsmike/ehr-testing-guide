@@ -279,7 +279,10 @@
   ;; PutGet: getting what you just put shows you what you put.
   ;;   (= (oru->observation (observation->oru obs parsed)) obs)
   ;;
-  ;; Both depend on ehr-testing.specimen/observation->oru being
+  ;; Stability (Chapter 31's third law): a second pass changes nothing.
+  ;;   (= (rt once) once), where once = (rt parsed) is a single round trip.
+  ;;
+  ;; All three depend on ehr-testing.specimen/observation->oru being
   ;; implemented (it is still a stub -- oru->observation is done, above).
   ;; Once it is, these become:
 
@@ -295,4 +298,15 @@
                     parsed gen-parsed-oru]
       (= (ehr-testing.specimen/oru->observation
           (ehr-testing.specimen/observation->oru obs parsed))
-         obs))))
+         obs)))
+
+  (def round-trip-stabilizes
+    ;; Ch 31's third law: a second pass changes nothing. rt is the
+    ;; source-side round trip; adjust the composite to observation->oru's
+    ;; actual two-arg signature once it is implemented.
+    (prop/for-all [parsed gen-parsed-oru]
+      (let [rt (fn [p] (ehr-testing.specimen/observation->oru
+                        (ehr-testing.specimen/oru->observation p)
+                        p))
+            once (rt parsed)]
+        (= once (rt once))))))
