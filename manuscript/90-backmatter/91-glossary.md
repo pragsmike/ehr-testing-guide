@@ -45,6 +45,17 @@ object's remainder hangs off it. What a universal healthcare format would
 actually have to be — and the identifications (which parts of two formats
 "say the same thing") are where all the difficulty lives. See Chapter 11.
 
+**ConceptMap** — A FHIR resource type recording a translation between a
+source code system and a target code system as rows, each row pairing a
+source code with a target code *and an explicit equivalence annotation*
+(R4: `equivalent`, `wider`, `narrower`, `inexact`, and six more, read as
+describing the target relative to the source; R5 renames the element to
+`relationship`, with a five-code vocabulary carrying the direction in the
+code names). In this book's terms: a relation made data, with a per-row
+confession of how strong each correspondence is — the honesty a plain
+function signature cannot carry. See Chapter 34; the dated reference
+entry is in Chapter 42.
+
 **Controlled mutation** — Deliberately injecting a single, documented defect
 into a known-good test case (golden or generated) so that a specific test is
 expected to fail, confirming the suite can catch that defect class. Each
@@ -69,6 +80,20 @@ consequence of getting it wrong — safety-critical, decision-affecting, or
 cosmetic — driving corpus depth (Chapter 23) and gate placement
 (Chapter 25).
 
+**Crosswalk** — A published correspondence between the codes of one
+terminology and the codes of another, maintained by a party with the
+standing to say what corresponds to what (e.g. NLM's SNOMED CT to
+ICD-10-CM map). Despite the lookup-table connotation, the mature examples
+are partial, one-to-many, and context-dependent — relations with side
+conditions, not functions. See Chapter 34.
+
+**CUI (Concept Unique Identifier)** — The UMLS Metathesaurus's unit of
+linkage: one CUI gathers, from every participating vocabulary, the codes
+and names judged to assert the same meaning. A shared CUI certifies
+recognized synonymy, not substitutability — it links concepts without
+telling you which code to emit, under what conditions, on whose
+authority. See Chapter 34.
+
 **Delta / sigma** — This book's event-sourcing vocabulary for two of its
 three recurring object kinds: a **delta** is a unit of change, an event,
 an increment to a history (an HL7 v2 message); a **sigma** is an
@@ -79,6 +104,12 @@ sense of "delta." See Chapter 12.
 **Delta lens** — A lens (see below) whose `put` operates on a change to the
 source rather than on the whole source state, appropriate when the source
 is itself event-shaped. See Chapter 31.
+
+**Equivalence annotation** — A ConceptMap row's own statement of how
+strong the correspondence between its source and target codes is —
+`equivalent`, `wider`, `inexact`, and so on. Test input, not decoration:
+a translation check may assert code equality only where the annotation
+claims it. See **ConceptMap** above, and Chapter 34.
 
 **Extension (FHIR)** — A standard-sanctioned mechanism by which any FHIR
 resource may carry locally defined elements no fixed schema anticipated.
@@ -92,6 +123,12 @@ balance at the bottom of a bank statement, not the list of transactions.
 This book's operational picture of how a **sigma** relates to the
 **deltas** that produced it: a state is a fold of events, with the
 intermediate steps discarded and unrecoverable. See Chapter 12.
+
+**Function** — A rule assigning to each input exactly one output, using
+nothing but the input: no side consultation of context, no judgment
+call, no "it depends." The kind of arrow integration diagrams silently
+assume, and the set of promises (Chapter 34) that mature terminology
+crosswalks explicitly decline to make. See also **Relation**.
 
 **Golden case** — A single handcrafted test case: a curated input paired
 with its expected output. The individual unit that makes up the *golden
@@ -167,6 +204,13 @@ corresponding query run against the source; the transform is correct for
 the pair when `q` composed with the transform agrees with `q-source` on
 every input, at the pair's agreement tolerance. See Chapter 21.
 
+**Relation** — A set of (input, output) pairs with no promise that every
+input appears (partiality), that any input appears only once (n-to-m),
+or that which pair applies is decidable from the input alone (side
+conditions). What remains of a function once those three promises are
+withdrawn — and, per Chapter 34, the honest type of every mature
+cross-terminology map.
+
 **Residue** — The information the source carries that a transform drops and
 that every purpose set in scope has declared it does not need. Making the
 residue explicit and reviewable — rather than discovering it in production —
@@ -177,6 +221,17 @@ Chapter 22.
 form and back out again recovers the original exactly. The property
 Chapter 11's canonical-format dream requires and Chapter 31 shows fails in
 practice. See Chapter 11.
+
+**Section (of a span)** — A rule that, given a code (or more generally a
+value) at the foot of one leg of a span, picks a representative at the
+foot of the other leg in a way that survives the round trip — cross
+over, cross back, land where you started. Operationally: the canonical
+choice function that would make a crosswalk safe to automate, with no
+patient record consulted and no coder's judgment applied. Formally, a
+one-sided inverse splitting one of the span's legs. Chapter 34's central
+negative claim is that cross-terminology spans have no canonical
+section — not for want of rows in the table, but because the two
+partitions disagree about which distinctions exist.
 
 **Seed (reproducibility)** — The starting number that determines a
 generator's pseudo-random sequence and therefore its entire output
@@ -194,6 +249,24 @@ supplying the volume and co-variation of real data without containing any
 real patient. Valid by construction, so defects must be injected afterward
 by controlled mutation. See Chapter 23; the tool's dated entry is in
 Chapter 43.
+
+**Terminology server** — A service that answers terminology questions —
+most importantly membership: is this code in this value set, in this
+version of this code system? — against the large, externally stewarded
+terminologies (SNOMED CT, LOINC, RxNorm, UCUM) that no validator can
+carry whole. What a conformance gate consults when a binding check is
+not decidable from local data; run without one, an honest gate reports
+"could not check" for exactly those bindings rather than pass or fail.
+See Chapters 25 and 34.
+
+**UMLS (Unified Medical Language System)** — NLM's meta-thesaurus
+linking names for the same concept across nearly two hundred source
+vocabularies via CUIs (see above). This book's terminology-level
+universal object — in the maps-in direction only: an unmatched directory
+of candidate correspondences, but a coproduct-like center with no lawful
+maps back out, so a linker and cross-check, never a translator or an
+equality oracle. Access requires a free license and UTS account. See
+Chapter 34; the dated reference entry is in Chapter 42.
 
 **Universal object** — In this book's use: the imagined single
 representation U that every format maps into and out of again coherently

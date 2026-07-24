@@ -37,14 +37,14 @@
 
 | Field | Value |
 |---|---|
-| What it is | The Unified Medical Language System — a meta-thesaurus linking SNOMED, LOINC, ICD, RxNorm, and dozens of other vocabularies via shared concept identifiers (CUIs). |
+| What it is | The Unified Medical Language System — a meta-thesaurus linking names for the same concept from nearly 200 source vocabularies (SNOMED CT, LOINC, ICD-10-CM, and RxNorm among them) via shared concept unique identifiers (CUIs). Access: request the (free) UMLS license and sign up for a UMLS Terminology Services (UTS) account at uts.nlm.nih.gov — licenses are issued to individuals, not organizations, and some uses require additional agreements with individual vocabulary owners. |
 | Publisher / steward | US National Library of Medicine (NLM) |
-| Kind of object (in this book's terms) | terminology (terminology-level universal object — see Chapter 32's echo in Chapter 34) |
+| Kind of object (in this book's terms) | terminology (terminology-level universal object — see Chapter 32's echo in Chapter 34, and its limits there: universal in the maps-in direction only) |
 | Interop mode (tools only) | n/a |
 | Maintenance status (tools only) | n/a |
-| Role in a test plan | A cross-check when validating a ConceptMap between two terminologies that don't publish a direct map to each other. |
+| Role in a test plan | A cross-check when validating a ConceptMap between two terminologies that don't publish a direct map to each other; an oracle for *candidacy* (a translation landing outside the source concept's CUI neighborhood is almost certainly wrong), never for equality (Chapter 34). |
 | Where it bites | A shared CUI does not imply a safe 1:1 clinical equivalence — UMLS links concepts, it does not certify interchangeability. |
-| Entry last verified | 2026-07-21 |
+| Entry last verified | 2026-07-24 |
 
 ### ICD-10 (CM / PCS)
 
@@ -115,11 +115,11 @@
 
 | Field | Value |
 |---|---|
-| What it is | A FHIR resource type that records a translation relation between codes in a source system and codes in a target system, with an explicit equivalence annotation per pair (equivalent, wider, narrower, inexact, ...) rather than asserting a bare function. |
-| Publisher / steward | HL7 International (the resource type); individual ConceptMap instances are published by whoever maintains the mapping (terminology stewards, implementation guides, or local sites) |
+| What it is | A FHIR resource type that records a translation relation between codes in a source system and codes in a target system, with an explicit equivalence annotation per pair rather than asserting a bare function. In R4 the annotation is `group.element.target.equivalence`, from the ten-code ConceptMapEquivalence value set (equivalent, wider, narrower, inexact, ...), read as describing the target relative to the source; R5 renames the element to `relationship` with the five-code ConceptMapRelationship vocabulary, the direction written into the code names (source-is-narrower-than-target and its mirror). |
+| Publisher / steward | HL7 International (the resource type); individual ConceptMap instances are published by whoever maintains the mapping (terminology stewards, implementation guides, or local sites). Where to find published instances: implementation guides bundle them in their packages; HL7's own code systems and value sets live in the HL7 Terminology (THO) releases at terminology.hl7.org. |
 | Kind of object (in this book's terms) | a span, made data — the formalized recording of the arrows-with-honesty-annotations relation Chapter 34 describes for terminologies that partition reality differently; distinct from the terminologies it maps between, which are this chapter's terminology entries proper |
 | Interop mode (tools only) | n/a |
 | Maintenance status (tools only) | n/a |
 | Role in a test plan | The artifact a translation property test should validate *against* rather than reimplement — asserting equivalence via a published ConceptMap's own annotations, rather than hand-rolling an equality check that silently assumes an equivalence the map itself does not claim. |
-| Where it bites | Reading a `wider`/`narrower`/`inexact` mapping entry as if it were `equivalent` is a common way a translation property passes when it should fail — the ConceptMap said the honest thing, and the code checking it wasn't listening. |
-| Entry last verified | 2026-07-21 |
+| Where it bites | Reading a `wider`/`narrower`/`inexact` mapping entry as if it were `equivalent` is a common way a translation property passes when it should fail — the ConceptMap said the honest thing, and the code checking it wasn't listening. The companion's `ehr-testing.conceptmap` makes both the failure and the repair executable (Chapter 34). |
+| Entry last verified | 2026-07-24 |

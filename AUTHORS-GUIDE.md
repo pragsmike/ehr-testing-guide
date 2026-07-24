@@ -77,7 +77,7 @@ Chapter status (update as work proceeds — values: `stub` / `drafting` /
 | 31 | Why Retractions Fail, and Lenses | stub |
 | 32 | The Event Log as Universal Object | stub |
 | 33 | The Type Systems Nobody Mentions | stub |
-| 34 | Terminology: Where Arrows Are Not Functions | stub |
+| 34 | Terminology: Where Arrows Are Not Functions | drafting |
 | 41 | The Standards Family | review |
 | 42 | The Terminology Layer | review |
 | 43 | Clojure-Reachable Tools | review |

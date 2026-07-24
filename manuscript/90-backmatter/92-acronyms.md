@@ -36,6 +36,9 @@ publishers.
 | NDC | National Drug Code (FDA drug product identifier) |
 | UCUM | Unified Code for Units of Measure |
 | UMLS | Unified Medical Language System |
+| UTS | UMLS Terminology Services (NLM's sign-up and access platform for UMLS) |
+| CUI | Concept Unique Identifier (UMLS Metathesaurus concept key) |
+| NLM | National Library of Medicine (US; steward of UMLS, RxNorm, and the SNOMED CT US Edition) |
 | openEHR | (an open standard for EHR data and archetype modeling; not itself an acronym expansion beyond "EHR," included here alongside RxNorm's precedent) |
 | OMOP | Observational Medical Outcomes Partnership |
 | OHDSI | Observational Health Data Sciences and Informatics |
