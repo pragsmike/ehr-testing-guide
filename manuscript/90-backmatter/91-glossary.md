@@ -39,6 +39,20 @@ binding). See Chapter 33.
 (when it was true) and transaction time (when the system learned it). See
 Chapter 32.
 
+**Catalytic input** — An input an operation reads but does not consume:
+the configuration a mutation step consults on every run, the profile a
+validator checks against — present unchanged on the far side of the box.
+Drawn as a dashed wire into the side of a box. The wire whiteboard
+drawings most often omit, and the one an implementation most often
+hard-codes. See Chapter 35.
+
+**Coherence square** — Two views of one object — say, two emitters
+reading the same event log — together with a witness that they agree
+on the content they share: both paths around the square land in the
+same place. A coherence square between two views is a metamorphic
+relation (Chapter 24), and an audit diagram marks each one as
+witnessed or not. See Chapter 35.
+
 **Colimit** — The categorical name for gluing a family of objects along
 their declared overlaps, so that shared content exists once and each
 object's remainder hangs off it. What a universal healthcare format would
@@ -105,17 +119,40 @@ sense of "delta." See Chapter 12.
 source rather than on the whole source state, appropriate when the source
 is itself event-shaped. See Chapter 31.
 
+**Enrichment (versus transformation)** — Of the two kinds of box in a
+process diagram: a *transformation* produces new content (a mutation
+step returning a different corpus), while an *enrichment* leaves its
+input's content untouched and attaches something to it — a verdict, a
+score, a digest. Enrichments are safe to run twice and commute when
+they write to different parts of the stamp; transformations in general
+are neither. Validators and properties are enrichments. See Chapter 35.
+
 **Equivalence annotation** — A ConceptMap row's own statement of how
 strong the correspondence between its source and target codes is —
 `equivalent`, `wider`, `inexact`, and so on. Test input, not decoration:
 a translation check may assert code equality only where the annotation
 claims it. See **ConceptMap** above, and Chapter 34.
 
+**Erasure** — The move from an implementation diagram back to the
+conceptual design it was lowered from: forget the stores, runtimes, and
+infrastructure boxes, keep only the kinds on the wires. A design is
+sound when lowering then erasing is the identity, `lower ⨟ erase = id`.
+Where an arrow exits into a format you do not control, erasure does not
+exist and the checkable surrogate is a frozen, digested copy of the
+lowered bytes. See Chapter 35.
+
 **Extension (FHIR)** — A standard-sanctioned mechanism by which any FHIR
 resource may carry locally defined elements no fixed schema anticipated.
 FHIR's member of the open-endedness family — parallel to v2's Z-segments
 and CDA's open templates — that makes any fixed universal schema lossy.
 See Chapter 11.
+
+**Fiber** — Over a design, the set of every implementation that erases
+to it: files-and-processes, table-and-queue, stream-and-cache, all one
+design. A *fiber move* is a change of implementation that stays inside
+the fiber — the design's witnesses are unchanged, and their staying
+green is the check that it was one. Autonomy in delegated work is
+freedom of movement within a declared fiber. See Chapter 35.
 
 **Fold** — A function that consumes a sequence step by step, threading an
 accumulator through, and returns the accumulator at the end — the running
@@ -138,6 +175,13 @@ author's and spec version's blind spots, not ground truth. See Chapter 23.
 **Golden corpus** — The curated, hand-built layer of a test corpus, as
 opposed to the generated or mutated layers. See Chapter 23.
 
+**Graded check** — A witness whose verdict is a grade rather than a
+boolean: a rubric, a review score, a clinical judgment of acceptability.
+It tests membership against a declared shape exactly as a crisp check
+does, differing only in its codomain. A graded pass enters the record
+with its grade, and grades only degrade through composition — a chain
+is never more trustworthy than its weakest checked link. See Chapter 35.
+
 **Hub architecture** — An integration architecture with one designated
 representation at the center and every other format translated into and
 out of it, collapsing n² point-to-point translators to 2n. Correct only if
@@ -156,6 +200,12 @@ from the recipients' side rather than the formats' side. See Chapter 22.
 structure to a view of it, obeying round-trip laws (GetPut, PutGet). This
 book's honest replacement for the lossless retraction that Chapter 11 shows
 cannot exist for healthcare formats. See Chapter 31.
+
+**Lowering** — The move from a conceptual design to an implementation
+of it: the same boxes and wires, with a store attached to every kind, a
+runtime to every box, and infrastructure boxes — persist, retry,
+checksum — spliced in where the substrate needs them. Lowering only
+ever adds; erasure forgets what it added. See Chapter 35.
 
 **Metamorphic relation** — A test relation between outputs of *related*
 inputs (e.g. permuted or filtered inputs), used when no independent oracle
@@ -216,6 +266,13 @@ that every purpose set in scope has declared it does not need. Making the
 residue explicit and reviewable — rather than discovering it in production —
 is what separates an engineered transform from a hopeful one. See
 Chapter 22.
+
+**Resource equation** — The one-line text form of a box in a process
+diagram: its inputs, an arrow, its outputs, the box's name in brackets,
+annotations in braces — `corpus × config → corpus [Mutate]
+{catalytic: config}`. The equation and the picture are the same object
+written two ways; the equation is the form that fits in a repository
+and a diff. See Chapter 35.
 
 **Retraction** — In this book, a lossless round-trip: transforming into a
 form and back out again recovers the original exactly. The property
@@ -281,6 +338,23 @@ validates against its schema"); useless as a standard because it draws no
 distinction between an acceptable transform and a dangerous one. The
 opposite-direction failure — a standard so strong every transform fails it
 — is equally useless; a purpose set is built to avoid both. See Chapter 21.
+
+**Witness** — For an edge of a process diagram, the named check whose
+failure is what it looks like for the edge to be wrong: a test, a
+digest compared against a recorded one, a schema check at a boundary, a
+rubric-scored review. Witnesses are pointwise — green on the inputs
+they saw — and never theorems. The concept generalizes Chapter 24's
+naturality-conditions-as-executable-tests from data transformations to
+the process that produces and tests the data. See Chapter 35.
+
+**Work signature** — The declared type of a delegated unit of work: its
+*domain* (the artifacts it may change, plus the design, conventions,
+and existing witnesses it reads catalytically), its *codomain* (the
+declared shape of the delivered value), its *invariants* (the fiber it
+must stay inside), and its *scope* (what it may not touch). The
+delivered change is type-checked against the signature by a checker who
+is not the doer, from the artifacts alone; on a type error the doer
+halts and reports. See Chapter 35.
 
 **Z-segment** — An HL7 v2 segment with a locally defined structure, named
 with a leading Z, which the standard explicitly reserves for site-specific

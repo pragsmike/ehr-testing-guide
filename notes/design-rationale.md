@@ -291,3 +291,16 @@ clinical reality differently on purpose, so there is no canonical
 "closest" concept to complete the round trip with, and the honest picture
 reverts to a span with no section — which is where Chapter 34 picks the
 thread back up.
+
+## Provenance of Chapter 35's process-design formalism
+
+Chapter 35's typed-diagram language (wires as kinds, boxes, `⨟`
+composition, catalytic inputs, enrichment versus transformation, the
+conceptual/implementation two-layer split with `lower ⨟ erase = id`,
+fibers, witnesses, graded checks) is drawn from the author's palgebra
+notes — the public `pragsmike/cyberneutics` repository (`palgebra/`)
+and its instantiation in `pragsmike/ehr-testing-tools` — with Fong and
+Spivak's *Seven Sketches* as the underlying string-diagram formalism.
+Per the G-a ruling (2026-08-21) the manuscript cites only
+`fong2019seven`; the sibling repositories are not named in the book,
+and this note is where that provenance is recorded.

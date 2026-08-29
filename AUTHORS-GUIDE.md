@@ -78,6 +78,7 @@ Chapter status (update as work proceeds — values: `stub` / `drafting` /
 | 32 | The Event Log as Universal Object | stub |
 | 33 | The Type Systems Nobody Mentions | stub |
 | 34 | Terminology: Where Arrows Are Not Functions | drafting |
+| 35 | Process Designs as Typed Diagrams | drafting |
 | 41 | The Standards Family | review |
 | 42 | The Terminology Layer | review |
 | 43 | Clojure-Reachable Tools | review |

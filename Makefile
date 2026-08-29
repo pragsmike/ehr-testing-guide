@@ -9,11 +9,16 @@ CHAPTERS := $(sort $(wildcard manuscript/00-frontmatter/*.md) \
                     $(wildcard manuscript/40-part-4-reference/*.md) \
                     $(wildcard manuscript/90-backmatter/*.md))
 
+# Figures (manuscript/figures/*.svg) are referenced from chapters by
+# repo-root-relative path; --resource-path=. resolves them from here and
+# --embed-resources (pandoc >= 2.19) inlines them so build/book.html is
+# self-contained. See manuscript/figures/README.md.
 book: build/book.md
 	@if command -v pandoc >/dev/null 2>&1; then \
 		echo "pandoc found: rendering build/book.html"; \
 		pandoc -s -f markdown -t html5 -o build/book.html build/book.md \
 				--citeproc --bibliography=manuscript/bibliography.bib \
+				--resource-path=. --embed-resources \
 				--metadata title="EHR Testing Guide"; \
 	else \
 		echo "NOTICE: pandoc not found on PATH; skipping build/book.html"; \

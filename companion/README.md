@@ -96,3 +96,6 @@ clojure -M:hapi -e "(compile 'ehr-testing.specimen)"   # example only
   properties over the schemas and specimen functions.
 - `ehr-testing.corpus` — the corpus's mutation layer (Chapter 23):
   controlled, labelled defect injection over the specimen's cases.
+- `ehr-testing.layers` — Chapter 35's toy two-layer model: a process
+  design as data, `lower` onto a substrate, `erase` back, and the
+  soundness law `lower ⨟ erase = id` as a test.check property.

@@ -1,0 +1,118 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 500" width="880" height="500"
+     role="img" aria-labelledby="figB-title figB-desc"
+     font-family="system-ui, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="13">
+  <title id="figB-title">Figure B. A delegated unit of work as a typed arrow</title>
+  <desc id="figB-desc">A unit of work W is drawn as an arrow from a domain (its context: inputs
+  consumed and standing artifacts read but not consumed) to a codomain (the declared shape of
+  the delivered value). Above the arrow, an invariants panel names the fiber W must stay
+  inside; below it, a scope panel names what W may not touch. To the right, an independent
+  verification step reads the delivered value alone, never the doer's narrative, and either
+  type-checks it or reports a type error at which the doer halts.</desc>
+
+  <defs>
+    <marker id="arrowB" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8"
+            orient="auto-start-reverse">
+      <path d="M 0 1 L 9 5 L 0 9 z" fill="#3a3935"/>
+    </marker>
+    <marker id="arrowB-v" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8"
+            orient="auto-start-reverse">
+      <path d="M 0 1 L 9 5 L 0 9 z" fill="#4a3aa7"/>
+    </marker>
+    <style>
+      .bg      { fill: #fbfbf8; stroke: #c9c7bd; stroke-width: 1; }
+      .lbl     { fill: #1a1a1a; }
+      .sub     { fill: #5a5852; font-size: 11.5px; }
+      .panel-t { fill: #3a3935; font-size: 11px; font-weight: 700; letter-spacing: .08em; }
+      .dom     { fill: #f2f1ed; stroke: #7a776f; stroke-width: 1.2; }
+      .cod     { fill: #eef3fb; stroke: #2a5db0; stroke-width: 1.2; }
+      .inv     { fill: #fdf3ec; stroke: #c2551f; stroke-width: 1.2; }
+      .scope   { fill: #fdf3ec; stroke: #c2551f; stroke-width: 1.2; stroke-dasharray: 5 4; }
+      .work    { fill: #ffffff; stroke: #1a1a1a; stroke-width: 1.8; }
+      .verify  { fill: #f1effa; stroke: #4a3aa7; stroke-width: 1.4; }
+      .wire    { stroke: #3a3935; stroke-width: 1.8; fill: none; }
+      .wire-k  { stroke: #7a776f; stroke-width: 1.4; fill: none; stroke-dasharray: 5 4; }
+      .wire-v  { stroke: #4a3aa7; stroke-width: 1.6; fill: none; }
+      .wire-no { stroke: #b04040; stroke-width: 1.4; fill: none; stroke-dasharray: 3 4; }
+      .boxlbl  { fill: #1a1a1a; font-size: 15px; font-weight: 700; text-anchor: middle; }
+      .boxsub  { fill: #5a5852; font-size: 11px; text-anchor: middle; }
+      .mono    { font-family: ui-monospace, Menlo, Consolas, 'Liberation Mono', monospace; font-size: 12px; fill: #1a1a1a; }
+      .op      { font-family: 'Cambria Math', 'STIX Two Math', 'Noto Sans Math', 'FreeSerif', 'FreeMono', serif; }
+      .ok      { fill: #1f6f3f; font-size: 12px; font-weight: 700; }
+      .bad     { fill: #b04040; font-size: 12px; font-weight: 700; }
+      .cap     { fill: #5a5852; font-size: 11px; }
+    </style>
+  </defs>
+
+  <rect class="bg" x="0.5" y="0.5" width="879" height="499" rx="6"/>
+  <text class="lbl" x="20" y="26" font-size="14" font-weight="700">Figure B — A delegated unit of work as a typed arrow, and the check that types its value</text>
+
+  <!-- ===================== INVARIANTS (above the arrow) ===================== -->
+  <rect class="inv" x="270" y="46" width="310" height="88" rx="6"/>
+  <text class="panel-t" x="282" y="64">INVARIANTS — the fiber W must stay inside</text>
+  <text class="sub" x="282" y="84">· every standing witness w₁ … wₙ still passes</text>
+  <text class="sub" x="282" y="101">· the design holds: erase(delivered) = design</text>
+  <text class="sub" x="282" y="118">· declared before the work starts, not inferred after</text>
+
+  <!-- ===================== DOMAIN ===================== -->
+  <rect class="dom" x="20" y="150" width="220" height="130" rx="6"/>
+  <text class="panel-t" x="32" y="168">DOMAIN — context in</text>
+  <text class="sub" x="32" y="190">inputs, consumed:</text>
+  <text class="sub" x="44" y="206">the artifacts the work changes</text>
+  <text class="sub" x="32" y="230">standing artifacts, catalytic:</text>
+  <text class="sub" x="44" y="246">the design · the conventions ·</text>
+  <text class="sub" x="44" y="262">the existing witnesses, read as-is</text>
+
+  <!-- ===================== THE ARROW W ===================== -->
+  <line class="wire" x1="240" y1="205" x2="318" y2="205" marker-end="url(#arrowB)"/>
+  <line class="wire-k" x1="240" y1="240" x2="330" y2="240" marker-end="url(#arrowB)"/>
+  <text class="sub" x="244" y="272" font-size="10.5">standing: read, not consumed</text>
+
+  <rect class="work" x="320" y="170" width="230" height="86" rx="6"/>
+  <text class="boxlbl" x="435" y="200">W</text>
+  <text class="boxsub" x="435" y="218">a unit of work, delegated</text>
+  <text class="boxsub" x="435" y="234">moves only inside the fiber</text>
+
+  <line class="wire" x1="550" y1="205" x2="608" y2="205" marker-end="url(#arrowB)"/>
+
+  <!-- vertical ties to invariants and scope -->
+  <line class="wire-k" x1="435" y1="134" x2="435" y2="168"/>
+  <line class="wire-k" x1="435" y1="256" x2="435" y2="292"/>
+
+  <!-- ===================== SCOPE (below the arrow) ===================== -->
+  <rect class="scope" x="270" y="294" width="310" height="70" rx="6"/>
+  <text class="panel-t" x="282" y="312">SCOPE — what W may not touch</text>
+  <text class="sub" x="282" y="332">· objects and arrows outside the declared cut</text>
+  <text class="sub" x="282" y="349">· other arrows' witnesses · the plane above</text>
+
+  <!-- ===================== CODOMAIN ===================== -->
+  <rect class="cod" x="610" y="150" width="250" height="110" rx="6"/>
+  <text class="panel-t" x="622" y="168">CODOMAIN — declared shape out</text>
+  <text class="sub" x="622" y="190">the delivered value, as artifacts:</text>
+  <text class="sub" x="634" y="206">· the changed objects</text>
+  <text class="sub" x="634" y="222">· a witness for each new arrow</text>
+  <text class="sub" x="634" y="238">· a record of what moved</text>
+
+  <!-- ===================== VERIFICATION ===================== -->
+  <line class="wire-v" x1="735" y1="260" x2="735" y2="300" marker-end="url(#arrowB-v)"/>
+  <text class="sub" x="744" y="284" font-size="10.5">the value only</text>
+
+  <rect class="verify" x="610" y="302" width="250" height="130" rx="6"/>
+  <text class="panel-t" x="622" y="320">VERIFICATION — independent</text>
+  <text class="sub" x="622" y="340">a checker who is not the doer asks:</text>
+  <text class="sub" x="634" y="356">value : declared shape ?</text>
+  <text class="sub" x="634" y="372">invariants green ?  scope untouched ?</text>
+  <text class="ok"  x="634" y="396">type-checks → accepted</text>
+  <text class="bad" x="634" y="414">type error → halt and report,</text>
+  <text class="bad" x="634" y="428" font-size="11px">not improvise</text>
+
+  <!-- the doer's narrative: explicitly not an input to verification -->
+  <path class="wire-no" d="M 548 250 C 600 275, 590 380, 606 400"/>
+  <line class="wire-no" x1="586" y1="322" x2="606" y2="342"/>
+  <line class="wire-no" x1="606" y1="322" x2="586" y2="342"/>
+  <text class="sub" x="580" y="386" font-size="10.5" text-anchor="end">the doer's account of the work:</text>
+  <text class="sub" x="580" y="400" font-size="10.5" text-anchor="end">not an input to the checker</text>
+
+  <!-- ===================== the signature as an equation ===================== -->
+  <text class="mono" x="20" y="462">context × standing → delivered  [W]  {catalytic: standing;  invariants: w₁ … wₙ;  scope: the declared cut}</text>
+  <text class="cap" x="20" y="482">a work signature is a resource equation with two more annotations; the delivered change is the arrow's value, and verification type-checks it</text>
+</svg>

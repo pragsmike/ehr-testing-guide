@@ -1,0 +1,168 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 560" width="880" height="560"
+     role="img" aria-labelledby="figA-title figA-desc"
+     font-family="system-ui, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="13">
+  <title id="figA-title">Figure A. Two planes: a design and its fiber</title>
+  <desc id="figA-desc">A conceptual plane above shows a typed diagram a, f, b, g, c with a
+  catalytic input k into f. An implementation plane below shows three variants of the same
+  diagram on files, tables, queues, streams and caches, one with an inserted infrastructure
+  box. Vertical arrows labelled lower and erase connect the planes; the three variants are
+  bracketed as the fiber over the design, and the law lower then erase equals identity is
+  stated between the planes.</desc>
+
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8"
+            orient="auto-start-reverse">
+      <path d="M 0 1 L 9 5 L 0 9 z" fill="#3a3935"/>
+    </marker>
+    <marker id="arrow-blue" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8"
+            orient="auto-start-reverse">
+      <path d="M 0 1 L 9 5 L 0 9 z" fill="#2a5db0"/>
+    </marker>
+    <marker id="arrow-orange" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8"
+            orient="auto-start-reverse">
+      <path d="M 0 1 L 9 5 L 0 9 z" fill="#c2551f"/>
+    </marker>
+    <style>
+      .bg      { fill: #fbfbf8; stroke: #c9c7bd; stroke-width: 1; }
+      .plane-c { fill: #eef3fb; stroke: #2a5db0; stroke-width: 1; }
+      .plane-i { fill: #fdf3ec; stroke: #c2551f; stroke-width: 1; }
+      .lbl     { fill: #1a1a1a; }
+      .sub     { fill: #5a5852; font-size: 12px; }
+      .plane-t { fill: #3a3935; font-size: 11.5px; font-weight: 700; letter-spacing: .08em; }
+      .mono    { font-family: ui-monospace, Menlo, Consolas, 'Liberation Mono', monospace; font-size: 12px; fill: #1a1a1a; }
+      .mono-s  { font-family: ui-monospace, Menlo, Consolas, 'Liberation Mono', monospace; font-size: 11px; fill: #5a5852; }
+      .wire    { stroke: #3a3935; stroke-width: 1.6; fill: none; }
+      .wire-k  { stroke: #7a776f; stroke-width: 1.4; fill: none; stroke-dasharray: 5 4; }
+      .box     { fill: #ffffff; stroke: #1a1a1a; stroke-width: 1.5; }
+      .box-i   { fill: #ffffff; stroke: #c2551f; stroke-width: 1.5; }
+      .infra   { fill: #f2f1ed; stroke: #7a776f; stroke-width: 1.3; stroke-dasharray: 5 4; }
+      .boxlbl  { fill: #1a1a1a; font-size: 14px; font-weight: 700; text-anchor: middle; }
+      .boxsub  { fill: #5a5852; font-size: 10.5px; text-anchor: middle; }
+      .wlbl    { fill: #1a1a1a; font-size: 13px; font-style: italic; text-anchor: middle; }
+      .ilbl    { fill: #3a3935; font-size: 11px; text-anchor: middle; }
+      .vert    { stroke: #7a776f; stroke-width: 1.6; fill: none; }
+      .brace   { stroke: #c2551f; stroke-width: 1.6; fill: none; }
+      .cap     { fill: #5a5852; font-size: 11px; }
+      .ilbl-s  { fill: #3a3935; font-size: 11px; text-anchor: start; }
+      .op      { font-family: 'Cambria Math', 'STIX Two Math', 'Noto Sans Math', 'FreeSerif', 'FreeMono', serif; }
+    </style>
+  </defs>
+
+  <rect class="bg" x="0.5" y="0.5" width="879" height="559" rx="6"/>
+  <text class="lbl" x="20" y="26" font-size="14" font-weight="700">Figure A — Two planes: a design, and the fiber of implementations that erase to it</text>
+
+  <!-- ===================== CONCEPTUAL PLANE ===================== -->
+  <rect class="plane-c" x="20" y="44" width="840" height="150" rx="6"/>
+  <text class="plane-t" x="32" y="62">CONCEPTUAL PLANE — what you mean</text>
+
+  <!-- wires and boxes, row at y = 130 -->
+  <line class="wire" x1="50" y1="130" x2="180" y2="130" marker-end="url(#arrow)"/>
+  <text class="wlbl" x="115" y="122">a</text>
+
+  <rect class="box" x="182" y="110" width="66" height="40" rx="4"/>
+  <text class="boxlbl" x="215" y="135">f</text>
+
+  <line class="wire" x1="248" y1="130" x2="378" y2="130" marker-end="url(#arrow)"/>
+  <text class="wlbl" x="313" y="122">b</text>
+
+  <rect class="box" x="380" y="110" width="66" height="40" rx="4"/>
+  <text class="boxlbl" x="413" y="135">g</text>
+
+  <line class="wire" x1="446" y1="130" x2="576" y2="130" marker-end="url(#arrow)"/>
+  <text class="wlbl" x="511" y="122">c</text>
+
+  <!-- catalytic side input k into f -->
+  <line class="wire-k" x1="215" y1="78" x2="215" y2="108" marker-end="url(#arrow)"/>
+  <text class="wlbl" x="232" y="88">k</text>
+  <text class="sub" x="240" y="100" font-size="10.5">read, not consumed</text>
+
+  <!-- equation form, right side -->
+  <text class="mono" x="612" y="96">a × k → b   [f]   {catalytic: k}</text>
+  <text class="mono" x="612" y="116">b → c       [g]</text>
+  <text class="mono" x="612" y="144">design  =  f <tspan class="op">⨟</tspan> g</text>
+  <text class="mono-s" x="612" y="164">wires carry kinds; nothing here has a cost</text>
+  <text class="sub" x="32" y="180" font-size="10.5">solid wire: a kind of artifact · box: an operation · dashed wire: catalytic input</text>
+
+  <!-- ===================== BETWEEN THE PLANES ===================== -->
+  <!-- lower: down on the left -->
+  <line class="vert" x1="120" y1="196" x2="120" y2="236" marker-end="url(#arrow)"/>
+  <text class="lbl" x="130" y="212" font-style="italic">lower</text>
+  <text class="sub" x="130" y="230" font-size="10.5">adds files, stores, processes</text>
+
+  <!-- erase: up on the right -->
+  <line class="vert" x1="760" y1="236" x2="760" y2="196" marker-end="url(#arrow)"/>
+  <text class="lbl" x="750" y="212" font-style="italic" text-anchor="end">erase</text>
+  <text class="sub" x="750" y="230" font-size="10.5" text-anchor="end">forgets them again</text>
+
+  <!-- the law, centred -->
+  <text class="mono" x="440" y="221" text-anchor="middle" font-size="13.5">lower <tspan class="op">⨟</tspan> erase  =  id</text>
+
+  <!-- ===================== IMPLEMENTATION PLANE ===================== -->
+  <rect class="plane-i" x="20" y="238" width="840" height="300" rx="6"/>
+  <text class="plane-t" x="32" y="256">IMPLEMENTATION PLANE — what runs</text>
+
+  <!-- variant 1 (row y = 300): plain files and processes -->
+  <text class="ilbl-s" x="36" y="284">variant 1</text>
+  <line class="wire" x1="50" y1="300" x2="180" y2="300" marker-end="url(#arrow)"/>
+  <text class="ilbl" x="115" y="293">a · file</text>
+  <rect class="box-i" x="182" y="282" width="80" height="36" rx="4"/>
+  <text class="boxlbl" x="222" y="297" font-size="13">f</text>
+  <text class="boxsub" x="222" y="311">process</text>
+  <line class="wire" x1="262" y1="300" x2="392" y2="300" marker-end="url(#arrow)"/>
+  <text class="ilbl" x="327" y="293">b · file</text>
+  <rect class="box-i" x="394" y="282" width="80" height="36" rx="4"/>
+  <text class="boxlbl" x="434" y="297" font-size="13">g</text>
+  <text class="boxsub" x="434" y="311">process</text>
+  <line class="wire" x1="474" y1="300" x2="604" y2="300" marker-end="url(#arrow)"/>
+  <text class="ilbl" x="539" y="293">c · file</text>
+  <line class="wire-k" x1="222" y1="262" x2="222" y2="280" marker-end="url(#arrow)"/>
+  <text class="ilbl-s" x="234" y="272">k · config file, unchanged</text>
+
+  <!-- variant 2 (row y = 380): table, job, inserted persist box, queue, worker -->
+  <text class="ilbl-s" x="36" y="364">variant 2</text>
+  <line class="wire" x1="50" y1="380" x2="180" y2="380" marker-end="url(#arrow)"/>
+  <text class="ilbl" x="115" y="373">a · table</text>
+  <rect class="box-i" x="182" y="362" width="80" height="36" rx="4"/>
+  <text class="boxlbl" x="222" y="377" font-size="13">f</text>
+  <text class="boxsub" x="222" y="391">job</text>
+  <line class="wire" x1="262" y1="380" x2="294" y2="380" marker-end="url(#arrow)"/>
+  <rect class="infra" x="296" y="362" width="84" height="36" rx="4"/>
+  <text class="boxsub" x="338" y="377" font-size="11">persist</text>
+  <text class="boxsub" x="338" y="391">hash · retry</text>
+  <line class="wire" x1="380" y1="380" x2="452" y2="380" marker-end="url(#arrow)"/>
+  <text class="ilbl" x="416" y="373">b · queue</text>
+  <rect class="box-i" x="454" y="362" width="80" height="36" rx="4"/>
+  <text class="boxlbl" x="494" y="377" font-size="13">g</text>
+  <text class="boxsub" x="494" y="391">worker</text>
+  <line class="wire" x1="534" y1="380" x2="604" y2="380" marker-end="url(#arrow)"/>
+  <text class="ilbl" x="571" y="373">c · table</text>
+
+  <!-- variant 3 (row y = 460): stream, service, cache -->
+  <text class="ilbl-s" x="36" y="444">variant 3</text>
+  <line class="wire" x1="50" y1="460" x2="180" y2="460" marker-end="url(#arrow)"/>
+  <text class="ilbl" x="115" y="453">a · stream</text>
+  <rect class="box-i" x="182" y="442" width="80" height="36" rx="4"/>
+  <text class="boxlbl" x="222" y="457" font-size="13">f</text>
+  <text class="boxsub" x="222" y="471">service</text>
+  <line class="wire" x1="262" y1="460" x2="392" y2="460" marker-end="url(#arrow)"/>
+  <text class="ilbl" x="327" y="453">b · cache (by hash)</text>
+  <rect class="box-i" x="394" y="442" width="80" height="36" rx="4"/>
+  <text class="boxlbl" x="434" y="457" font-size="13">g</text>
+  <text class="boxsub" x="434" y="471">service</text>
+  <line class="wire" x1="474" y1="460" x2="604" y2="460" marker-end="url(#arrow)"/>
+  <text class="ilbl" x="539" y="453">c · report</text>
+
+  <!-- the fiber brace on the right -->
+  <path class="brace" d="M 640 276 q 10 0 10 10 L 650 366 q 0 10 10 10 q -10 0 -10 10 L 650 468 q 0 10 -10 10"/>
+  <text class="lbl" x="672" y="360" font-weight="700" font-size="13">the fiber over f <tspan class="op">⨟</tspan> g</text>
+  <text class="sub" x="672" y="378" font-size="11.5">three implementations,</text>
+  <text class="sub" x="672" y="394" font-size="11.5">one design: each variant</text>
+  <text class="sub" x="672" y="410" font-size="11.5">erases to the plane above.</text>
+  <text class="sub" x="672" y="432" font-size="11.5">Swapping variants is a</text>
+  <text class="sub" x="672" y="448" font-size="11.5">move inside the fiber;</text>
+  <text class="sub" x="672" y="464" font-size="11.5">the design does not move.</text>
+
+  <!-- caption line -->
+  <text class="cap" x="32" y="510">orange boxes: the design's own boxes, now with a runtime · dashed grey box: infrastructure added by lowering and forgotten by erasure</text>
+  <text class="cap" x="32" y="526">wire labels: the kind above, the substrate below · a lowering that changes a kind, or drops a box, does not erase back — it left the fiber</text>
+</svg>
