@@ -160,7 +160,7 @@ three variants are bracketed together on the right as the **fiber** over
 the design: the set of every implementation that erases to it.
 
 ![Figure A — Two planes: a design, and the fiber of implementations
-that erase to it.](manuscript/figures/fig-35-a-two-planes.svg)
+that erase to it.](../figures/fig-35-a-two-planes.svg)
 
 The fiber is the picture's most useful part, because it makes a routine
 engineering act visible as a *type*. Moving from variant one to variant
@@ -325,7 +325,7 @@ conceptual layer itself. Call the four together a **work signature**:
 a resource equation with two annotations added. Figure B draws one.
 
 ![Figure B — A delegated unit of work as a typed arrow, and the check
-that types its value.](manuscript/figures/fig-35-b-work-signature.svg)
+that types its value.](../figures/fig-35-b-work-signature.svg)
 
 The delivered change is the arrow's *value*, and the decisive step is
 that it is **type-checked** against the signature by a checker who is

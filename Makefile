@@ -10,15 +10,20 @@ CHAPTERS := $(sort $(wildcard manuscript/00-frontmatter/*.md) \
                     $(wildcard manuscript/90-backmatter/*.md))
 
 # Figures (manuscript/figures/*.svg) are referenced from chapters by
-# repo-root-relative path; --resource-path=. resolves them from here and
-# --embed-resources (pandoc >= 2.19) inlines them so build/book.html is
-# self-contained. See manuscript/figures/README.md.
+# chapter-relative path (../figures/x.svg) so they resolve on GitHub and in
+# editor previews. Concatenation into build/book.md loses the chapter's
+# directory, so a second --resource-path=manuscript/figures (repeated flag,
+# not a : list -- the list separator is ; on native Windows) lets pandoc
+# resolve ../figures/x.svg back into that directory; --embed-resources
+# (pandoc >= 2.19) inlines them so build/book.html is self-contained.
+# lint-book gates the chapter-relative resolution. See
+# manuscript/figures/README.md.
 book: build/book.md
 	@if command -v pandoc >/dev/null 2>&1; then \
 		echo "pandoc found: rendering build/book.html"; \
 		pandoc -s -f markdown -t html5 -o build/book.html build/book.md \
 				--citeproc --bibliography=manuscript/bibliography.bib \
-				--resource-path=. --embed-resources \
+				--resource-path=. --resource-path=manuscript/figures --embed-resources \
 				--metadata title="EHR Testing Guide"; \
 	else \
 		echo "NOTICE: pandoc not found on PATH; skipping build/book.html"; \
@@ -41,6 +46,15 @@ lint-book: build/book.md
 			echo "lint-book: FAIL -- cited entry '$$key' still carries a TODO in bibliography.bib"; \
 			FAIL=1; \
 		fi; \
+	done; \
+	for f in $(CHAPTERS); do \
+		for p in $$(perl -0777 -ne 'print "$$1\n" while /!\[[^\]]*\]\(\s*([^)\s]+)/g' "$$f"); do \
+			case "$$p" in http://*|https://*) continue;; esac; \
+			if [ ! -e "$$(dirname "$$f")/$$p" ]; then \
+				echo "lint-book: FAIL -- $$f: image '$$p' does not resolve relative to the chapter file"; \
+				FAIL=1; \
+			fi; \
+		done; \
 	done; \
 	if [ -f build/book.html ]; then \
 		if sed -n '/<div id="refs"/,$$p' build/book.html | tr '\n' ' ' | grep -qE 'n\.d\.|TODO'; then \
